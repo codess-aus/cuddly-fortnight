@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {#- Hero banner: shown when page meta includes hero_image -#}
+  {% if page.meta and page.meta.hero_image %}
+  <div class="ws-hero" role="img" aria-label="{{ page.meta.hero_alt | default('Page hero banner') }}">
+    <img
+      src="{{ page.meta.hero_image | url }}"
+      alt="{{ page.meta.hero_alt | default('') }}"
+      loading="eager"
+      width="1200"
+      height="380"
+    />
+    {% if page.meta.hero_title or page.meta.hero_subtitle %}
+    <div class="ws-hero-caption">
+      {% if page.meta.hero_title %}
+      <h1>{{ page.meta.hero_title }}</h1>
+      {% endif %}
+      {% if page.meta.hero_subtitle %}
+      <p>{{ page.meta.hero_subtitle }}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  {{ super() }}
+{% endblock %}
